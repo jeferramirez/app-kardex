@@ -1,0 +1,21 @@
+<div class="mt-5">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products" (click)= "showProduct(product)" class="selection">
+        <th scope="row">{{product.id}}</th>
+        <td>{{product.name}}</td>
+        <td>{{product.stock}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

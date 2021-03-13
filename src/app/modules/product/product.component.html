@@ -1,0 +1,89 @@
+<div class="mt-5">
+  <div class="card" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4 mt-4">
+        <img [src]="previewimage" alt="..." width="160" height="160">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Create Product</h5>
+
+          <form class="row g-4" [formGroup]="productForm">
+            <div class="col-md-12">
+              <label for="inputEmail4" class="form-label">Name</label>
+              <input type="text" formControlName="name" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Price</label>
+              <input type="number" formControlName="price" class="form-control" id="price" placeholder="Price">
+            </div>
+            <div class="col-6">
+              <label for="inputAddress" class="form-label">Stock</label>
+              <input type="number" formControlName="stock" class="form-control" id="stock" placeholder="Stock">
+            </div>
+
+            <div class="col-12">
+              <label for="inputAddress" class="form-label">Image</label>
+              <input (change)="loadImage($event)" type="file" class="form-control" id="image" placeholder="Image">
+            </div>
+
+            <div class="col-12">
+              <label for="inputAddress" class="form-label">Description</label>
+              <input type="text" formControlName="description" class="form-control" id="description"
+                placeholder="Description">
+            </div>
+
+            <div class="d-grid gap-2 col-6 mx-auto" *ngIf="!productForm.get('id').value">
+              <button type="button" [disabled]="productForm.invalid" (click)="createProduct()"
+                class="btn btn-success">Save</button>
+            </div>
+
+
+            <div class="d-grid gap-2 col-6 mx-auto" *ngIf="productForm.get('id').value">
+              <button type="button" (click)="updateProduct()" [disabled]="productForm.invalid"
+                class="btn btn-success btn-block">Update</button>
+              <button type="button" [disabled]="productForm.invalid" data-bs-toggle="modal"
+                data-bs-target="#sell-modal" class="btn btn-primary  btn-block">Sell</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="sell-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sell {{product?.name}}</h5>
+        <button type="button" class="btn-close" #closebutton data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Units</label>
+            <input [(ngModel)]="units" type="number" class="form-control" id="price" placeholder="Units">
+          </div>
+
+          <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Total</label>
+            <input disabled [(value)]="this.product?.price * units " class="form-control" id="total" placeholder="00">
+          </div>
+
+        </div>
+
+
+        <div class="alert alert-danger mt-3" role="alert" *ngIf="errors.unitsError">
+          Quantity exceeds current stock
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="sellProduct()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
