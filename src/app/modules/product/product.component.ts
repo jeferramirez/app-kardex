@@ -22,7 +22,7 @@ export class ProductComponent implements OnInit, OnChanges{
     price : [0, Validators.required],
     stock : [0, Validators.required],
     description : ['', Validators.required],
-    image : ['', Validators.required],
+    image : [null],
     id: [null]
   });
   units: number = 0;
@@ -101,11 +101,9 @@ export class ProductComponent implements OnInit, OnChanges{
   ngOnChanges(changes) {
     if (changes.product.currentValue) {
       this.productForm.patchValue(this.product);
-      this.previewimage = this.product.image;
+      this.previewimage = this.product.image ? this.product.image : '../../../assets/defaultproduct.png' ;
     }
   }
 
-  showTotal(){
-    this.total = this.product.price *this.units ;
-  }
+
 }

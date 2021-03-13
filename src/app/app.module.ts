@@ -8,8 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductComponent } from './modules/product/product.component';
 // angular material
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductListComponent } from './modules/product/product-list/product-list.component';
 import { ProductContainerComponent } from './modules/product/product-container/product-container.component';
@@ -28,8 +27,6 @@ import { ProductContainerComponent } from './modules/product/product-container/p
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
     ReactiveFormsModule,
     FormsModule
   ],
