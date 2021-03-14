@@ -42,6 +42,7 @@ describe('ProductComponent', () => {
       image: '',
       stock: 10
     });
+
     component.units = -2;
     component.sellProduct();
     expect(component.errors.unitsError).toBeTruthy();
